@@ -199,5 +199,7 @@ uv run streamlit run llm_feedback_classifier/frontend.py
 - Melhoria na Interface do Streamlit para melhorar a experiência do usuário
 - Uma página de métricas
 - Testes unitários automatizados com pytest
+- Um Agente validador do rascunho, automatizando a verificação do rascunho
+- Cache semântico, para casos o feedbacks forem idênticos, já reaproveitamos a resposta gerada anteriormente
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
