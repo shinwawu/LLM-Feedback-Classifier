@@ -34,21 +34,6 @@ class RedraftRequest(BaseModel):
     prioridade: str
 
 
-# processamento de feedback em uma fila para cada sessao
-def processar_feedback_na_fila(task_id: str, comentario: str):
-    try:
-        estado_inicial = {
-            "comentario_cliente": comentario,
-            "validado_por_humano": False,
-        }
-        resultado = app_graph.invoke(estado_inicial)
-
-        # atualiza o banco de memoria com o resultado da llm
-        banco_de_tarefas[task_id] = {"status": "CONCLUIDO", "resultado": resultado}
-    except Exception as e:
-        banco_de_tarefas[task_id] = {"status": "ERRO", "detalhe": str(e)}
-
-
 # funcoes da api
 
 

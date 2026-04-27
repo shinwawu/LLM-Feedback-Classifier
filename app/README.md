@@ -99,9 +99,7 @@ Fluxo padrão onde tudo ocorre sem interrupções e o usuário aprova o texto da
        ▼
 [Streamlit: Exibe Rascunho] ──> [usuário clica "Aprovar"] ──> [FIM]
 ```
-### 🔄 Fluxos e Caminhos Possíveis (Arquitetura em Grafo)
 
-O sistema foi desenhado para lidar tanto com o cenário ideal (*Happy Path*) quanto com exceções, falhas na API e intervenção humana. Abaixo estão os mapas de fluxo para cada cenário:
 
 #### 2. O Caminho com reescrita 
 Fluxo padrão onde o usuário não aprovou e gostaria de reescrever o texto da IA de primeira.
@@ -125,13 +123,18 @@ Fluxo padrão onde o usuário não aprovou e gostaria de reescrever o texto da I
 [Memória: Status = CONCLUIDO] ───────────────────────────┘
        │
        ▼
-[Streamlit: Exibe Rascunho] ──> [usuário clica "Refazer Rascunho"]
-       ▲                                   │
-       │                                   │  
-[FastAPI: Rota /redraft]<──────────────────┘
-       │
+[Streamlit: Exibe Rascunho] ──────────────────────────────────────────────────────────
+       ▲                                   │                                         │
+       │                                   ▼                                         │
+[FastAPI: Rota /redraft]<──────────────[usuário clica "Refazer Rascunho"]            │
+                                                                                     │
+[usuário clica "Aprovar"]<───────────────────────────────────────────────────────────┘ 
+       │ 
        ▼
-[usuário clica "Aprovar"] ──> [FIM]
+     [FIM]
+
+
+
 
 ``` 
 
